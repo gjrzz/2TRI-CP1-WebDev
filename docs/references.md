@@ -3,12 +3,9 @@
 Mínimo de 3 referências visuais, cada uma com: o que foi observado, onde
 usei no meu app e por que faz sentido pra minha solução.
 
-As imagens ficam em `docs/references/imagens/`. Os nomes abaixo são só
-placeholder - trocar pelos prints reais antes de entregar.
-
 ## 1. Letterboxd - lista de filmes avaliados com estrelas
 
-**Imagem:** `imagens/letterboxd-perfil.png` *(print pendente)*
+![Perfil do Letterboxd](Images/LetterBoxs_Profile.png)
 
 **O que observei:** no perfil do usuário, o Letterboxd mostra cada
 filme como um pôster pequeno com a nota em estrelas (incluindo meia
@@ -27,7 +24,7 @@ app.
 
 ## 2. Netflix - grid de descoberta em tela escura
 
-**Imagem:** `imagens/netflix-home.png` *(print pendente)*
+![Home do Netflix](Images/Netflix_Home.png)
 
 **O que observei:** a home do Netflix é um grid de pôsteres em fundo
 escuro, sem muito texto, focado na imagem do filme/série. O usuário
@@ -43,7 +40,7 @@ fixo que defini no requirements.
 
 ## 3. Strava - painel de estatísticas pessoais
 
-**Imagem:** `imagens/strava-stats.png` *(print pendente)*
+![Estatísticas do Strava](Images/Strava_Stats.png)
 
 **O que observei:** o Strava resume a atividade do usuário em números
 grandes e diretos (distância total, ritmo médio, etc), sem gráfico
