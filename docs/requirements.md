@@ -89,8 +89,8 @@ favoritos e gêneros preferidos, sem precisar de conta ou cadastro.
   de cada usuário.
 - Tema visual é **dark fixo** — não há alternância de tema na interface.
 - Uma avaliação é composta por: `id do filme`, `título`, `pôster`,
-  `gênero(s)`, `nota`, `data da avaliação`.
-- Um favorito é composto por: `id do filme`, `título`, `pôster`,
+  `ano`, `gênero(s)`, `nota`, `data da avaliação`.
+- Um favorito é composto por: `id do filme`, `título`, `pôster`, `ano`,
   `gênero(s)`.
 - A média de notas deve ser calculada com uma casa decimal (ex: `4.3`).
 - O gênero mais avaliado é aquele que aparece com mais frequência entre

@@ -22,6 +22,7 @@ export function useRatings() {
         id: movie.id,
         title: movie.title,
         poster_path: movie.poster_path,
+        release_date: movie.release_date ?? null,
         genres: movie.genres ?? [],
         rating: clampRating(rating),
         ratedAt: new Date().toISOString(),

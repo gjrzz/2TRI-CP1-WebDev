@@ -64,9 +64,9 @@ da API fica no `.env` (`VITE_TMDB_API_KEY`), não vai commitada.
 
 ## O que fica salvo no localStorage
 
-- avaliações: id do filme, título, poster, gênero, nota, data que
+- avaliações: id do filme, título, poster, ano, gênero, nota, data que
   avaliei
-- favoritos: id do filme, título, poster, gênero
+- favoritos: id do filme, título, poster, ano, gênero
 
 Os hooks (`useRatings` e `useFavorites`) que cuidam de ler/escrever
 isso toda vez que algo muda.

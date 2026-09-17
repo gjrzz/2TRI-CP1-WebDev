@@ -29,7 +29,7 @@ function Home() {
         {isSearching ? `Resultados para "${search.trim()}"` : 'Em alta'}
       </h1>
 
-      {active.error && (
+      {active.error && active.movies.length === 0 && (
         <ErrorMessage onRetry={isSearching ? searchResult.refetch : trending.refetch} />
       )}
 
@@ -46,13 +46,19 @@ function Home() {
         />
       )}
 
-      {!active.error && active.movies.length > 0 && (
+      {active.movies.length > 0 && (
         <>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {active.movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} isFavorite={isFavorite(movie.id)} />
             ))}
           </div>
+
+          {active.error && (
+            <p className="text-center text-sm text-white/60">
+              Não foi possível carregar mais filmes.
+            </p>
+          )}
 
           {active.hasMore && (
             <button
@@ -61,7 +67,7 @@ function Home() {
               disabled={isLoading}
               className="self-center px-5 py-2.5 rounded-md bg-primary text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
             >
-              {isLoading ? 'Carregando...' : 'Carregar mais'}
+              {isLoading ? 'Carregando...' : active.error ? 'Tentar novamente' : 'Carregar mais'}
             </button>
           )}
         </>
