@@ -17,5 +17,12 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      // Data-fetching hooks (useTrendingMovies, useMovieSearch, useMovieDetail)
+      // legitimately set loading/error state synchronously before an async
+      // call inside useEffect — the documented React pattern for fetching
+      // data in an effect. This React Compiler diagnostic flags that pattern.
+      'react-hooks/set-state-in-effect': 'off',
+    },
   },
 ])
