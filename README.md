@@ -1,16 +1,60 @@
-# React + Vite
+# logger.mp4
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto do CP1 de Web Dev (FIAP) - uma releitura simplificada do
+Letterboxd, feita em React.
 
-Currently, two official plugins are available:
+**Integrante:** Gabriel Juarez
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## O problema
 
-## React Compiler
+Com o fim do TV Time, faltou um app simples pra quem gosta de manter um
+histórico de filmes assistidos - dar nota, favoritar e acompanhar
+estatísticas básicas de consumo (quantos filmes já avaliou, qual gênero
+mais assiste, etc).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## A solução
 
-## Expanding the ESLint configuration
+O logger.mp4 deixa o usuário buscar filmes, avaliar de 0.5 a 5 estrelas,
+favoritar os que quiser guardar, e ver tudo isso resumido num perfil com
+estatísticas simples. Sem login, sem cadastro - tudo fica salvo no
+navegador (localStorage).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades
+
+- Home com filmes em alta + busca em tempo real
+- Página de detalhe do filme (sinopse, gênero, ano, pôster)
+- Avaliar, editar e remover nota (0.5 a 5 estrelas)
+- Favoritar filmes, independente da nota
+- Página de perfil com lista de avaliados + estatísticas (total, média,
+  gênero favorito), com ordenação por nota ou data
+- Página de favoritos
+- Tema dark fixo
+
+## Tecnologias
+
+- React + Vite (JavaScript)
+- React Router
+- Tailwind CSS
+- react-icons
+- API do TMDB (The Movie Database)
+- localStorage para persistência
+
+## Uso de IA
+
+O projeto foi construído seguindo Spec Driven Development: primeiro
+documentei o que o app deveria fazer (`docs/requirements.md`) e como
+seria estruturado (`docs/architecture.md`), e só depois usei o Claude
+Code pra implementar em cima dessa especificação, etapa por etapa,
+revisando e commitando cada parte manualmente. As decisões de produto,
+design e arquitetura foram minhas - a IA ajudou na escrita do código
+seguindo o que já tinha sido definido.
+
+## Site online em https://loggermp4.vercel.app
+## Documentação
+
+- [`docs/requirements.md`](docs/requirements.md) - objetivo, user
+  stories, critérios de aceitação
+- [`docs/architecture.md`](docs/architecture.md) - páginas, rotas,
+  componentes, hooks
+- [`docs/references/references.md`](docs/references/references.md) -
+  referências visuais usadas
