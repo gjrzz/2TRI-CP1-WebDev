@@ -10,6 +10,7 @@ export function useMovieSearch(query) {
   const [isLoading, setIsLoading] = useState(false)
   const [isDebouncing, setIsDebouncing] = useState(false)
   const [error, setError] = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
 
   const trimmedQuery = query.trim()
 
@@ -21,7 +22,7 @@ export function useMovieSearch(query) {
       setIsLoading(false)
       setIsDebouncing(false)
       setError(null)
-      return
+      return undefined
     }
 
     setIsDebouncing(true)
@@ -42,7 +43,9 @@ export function useMovieSearch(query) {
     }, DEBOUNCE_MS)
 
     return () => clearTimeout(timer)
-  }, [trimmedQuery])
+  }, [trimmedQuery, reloadKey])
+
+  const refetch = useCallback(() => setReloadKey((key) => key + 1), [])
 
   const loadMore = useCallback(() => {
     if (!trimmedQuery || isLoading || page >= totalPages) return
@@ -52,7 +55,11 @@ export function useMovieSearch(query) {
 
     searchMovies(trimmedQuery, nextPage)
       .then((data) => {
-        setMovies((prev) => [...prev, ...(data.results ?? [])])
+        setMovies((prev) => {
+          const existingIds = new Set(prev.map((movie) => movie.id))
+          const newMovies = (data.results ?? []).filter((movie) => !existingIds.has(movie.id))
+          return [...prev, ...newMovies]
+        })
         setPage(nextPage)
         setTotalPages(data.total_pages ?? nextPage)
       })
@@ -68,5 +75,6 @@ export function useMovieSearch(query) {
     loadMore,
     hasMore: page < totalPages,
     hasQuery: Boolean(trimmedQuery),
+    refetch,
   }
 }

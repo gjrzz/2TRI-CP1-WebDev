@@ -7,6 +7,7 @@ export function useTrendingMovies() {
   const [totalPages, setTotalPages] = useState(1)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {
     let cancelled = false
@@ -30,7 +31,9 @@ export function useTrendingMovies() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [reloadKey])
+
+  const refetch = useCallback(() => setReloadKey((key) => key + 1), [])
 
   const loadMore = useCallback(() => {
     if (isLoading || page >= totalPages) return
@@ -41,7 +44,11 @@ export function useTrendingMovies() {
 
     getTrendingMovies(nextPage)
       .then((data) => {
-        setMovies((prev) => [...prev, ...(data.results ?? [])])
+        setMovies((prev) => {
+          const existingIds = new Set(prev.map((movie) => movie.id))
+          const newMovies = (data.results ?? []).filter((movie) => !existingIds.has(movie.id))
+          return [...prev, ...newMovies]
+        })
         setPage(nextPage)
         setTotalPages(data.total_pages ?? nextPage)
       })
@@ -55,5 +62,6 @@ export function useTrendingMovies() {
     error,
     loadMore,
     hasMore: page < totalPages,
+    refetch,
   }
 }

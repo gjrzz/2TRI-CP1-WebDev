@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getMovieDetail } from '../services/tmdb'
 
 export function useMovieDetail(id) {
   const [movie, setMovie] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {
     if (!id) return undefined
@@ -28,7 +29,9 @@ export function useMovieDetail(id) {
     return () => {
       cancelled = true
     }
-  }, [id])
+  }, [id, reloadKey])
 
-  return { movie, isLoading, error }
+  const refetch = useCallback(() => setReloadKey((key) => key + 1), [])
+
+  return { movie, isLoading, error, refetch }
 }
