@@ -11,7 +11,8 @@ function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-b border-white/10">
       <nav className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
-        <span className="text-lg font-bold text-white">
+        <span className="flex items-center gap-2 text-lg font-bold text-white">
+          <img src="/favicon.svg" alt="" className="w-6 h-6" aria-hidden="true" />
           logger<span className="text-primary">.mp4</span>
         </span>
 
